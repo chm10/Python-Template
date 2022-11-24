@@ -1,0 +1,9 @@
+version: "3"
+services:
+  app:  
+    build: .
+    volumes:
+      - ./app:/home/user/app
+    tty: True
+    container_name: python3.11-dev-container
+    
