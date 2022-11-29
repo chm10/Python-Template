@@ -21,8 +21,10 @@ RUN adduser --disabled-password --gecos '' user && \
     #adduser user sudo && \
     chown -R user /home/user &&\
     chown -R user /usr/local/bin &&\ 
-    chown -R user /usr/local/lib/python3.11 &&\
-    chown -R 1000:1000 /usr/local/bin &&\
+    chown -R user /usr/local/lib &&\
+    chown -R user /user/local/etc &&\
+    chown -R user /usr/local/include &&\
+    chown -R user /usr/local/share &&\
     chown -R 755 /home/user
 
 RUN cp --backup=t /etc/skel/.bashrc ~user/.bashrc &&\
