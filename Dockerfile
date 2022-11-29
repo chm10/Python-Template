@@ -30,7 +30,10 @@ RUN adduser --disabled-password --gecos '' user && \
 RUN cp --backup=t /etc/skel/.bashrc ~user/.bashrc &&\
     cp --backup=t /etc/skel/.profile ~user/.profile &&\
     cp --backup=t /etc/skel/.bash_logout ~user/.bash_logout
-    
+
+RUN mkdir -p /home/user/.local/bin &&\
+    chown -R user /home/user/.local
+
 USER user
 
 WORKDIR /home/user/app
