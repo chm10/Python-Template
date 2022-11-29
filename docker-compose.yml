@@ -6,4 +6,6 @@ services:
       - ./app:/home/user/app
     tty: True
     container_name: python3.11-dev-container
-    
+    ports:
+      - "8888:8888"
+    - network_mode: host

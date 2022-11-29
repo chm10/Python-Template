@@ -22,7 +22,7 @@ RUN adduser --disabled-password --gecos '' user && \
     chown -R user /home/user &&\
     chown -R user /usr/local/bin &&\ 
     chown -R user /usr/local/lib &&\
-    chown -R user /user/local/etc &&\
+    chown -R user /usr/local/etc &&\
     chown -R user /usr/local/include &&\
     chown -R user /usr/local/share &&\
     chown -R 755 /home/user
