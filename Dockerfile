@@ -17,6 +17,9 @@ RUN apt-get update && apt-get install -y \
     git \
     && rm -rf /var/lib/apt/lists/*
 
+RUN mkdir -p /usr/local/share/jupyter/lab 
+COPY ./jupyter/overrides.json /usr/local/share/jupyter/lab/settings/overrides.json
+
 RUN adduser --disabled-password --gecos '' user && \
     #adduser user sudo && \
     chmod -R 777 /home/user &&\
@@ -43,6 +46,6 @@ COPY requirements.txt /home/user/app/requirements.txt
 
 RUN pip3 install --no-cache-dir -r requirements.txt
 
-COPY jupyterlab.sh /home/user/jupyterlab.sh
+COPY ./jupyter/jupyterlab.sh /home/user/jupyterlab.sh
 
 CMD ["/bin/bash"]
