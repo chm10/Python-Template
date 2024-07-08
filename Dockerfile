@@ -1,4 +1,4 @@
-FROM python:3.12
+FROM python:3.11
 
 ENV PYTHONUNBUFFERED=1
 ENV PYTHONDONTWRITEBYTECODE=1
@@ -20,18 +20,18 @@ RUN apt-get update && apt-get install -y \
 RUN adduser --disabled-password --gecos '' user && \
     #adduser user sudo && \
     chmod -R 777 /home/user &&\
-    chmod -R 777 /usr/local/bin &&\ 
-    chmod -R 777 /usr/local/lib &&\
-    chmod -R 777 /usr/local/etc &&\
-    chmod -R 777 /usr/local/include &&\
-    chmod -R 777 /usr/local/share 
+    chown -R user:1000 /usr/local/bin &&\ 
+    chown -R user:1000 /usr/local/lib &&\
+    chown -R user:1000 /usr/local/etc &&\
+    chown -R user:1000 /usr/local/include &&\
+    chown -R user:1000 /usr/local/share 
 
 RUN cp --backup=t /etc/skel/.bashrc ~user/.bashrc &&\
     cp --backup=t /etc/skel/.profile ~user/.profile &&\
     cp --backup=t /etc/skel/.bash_logout ~user/.bash_logout
 
-RUN mkdir -p /home/user/.local/bin &&\
-    chown -R user /home/user/.local
+#RUN mkdir -p /home/user/.local/bin &&\
+#    chown -R user:1000 /home/user/.local
 
 USER user
 
