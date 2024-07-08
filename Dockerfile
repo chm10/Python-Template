@@ -19,12 +19,12 @@ RUN apt-get update && apt-get install -y \
 
 RUN adduser --disabled-password --gecos '' user && \
     #adduser user sudo && \
-    chown -R user /home/user &&\
-    chown -R user /usr/local/bin &&\ 
-    chown -R user /usr/local/lib &&\
-    chown -R user /usr/local/etc &&\
-    chown -R user /usr/local/include &&\
-    chown -R user /usr/local/share &&\
+    chmod -R 777 /home/user &&\
+    chmod -R 777 /usr/local/bin &&\ 
+    chmod -R 777 /usr/local/lib &&\
+    chmod -R 777 /usr/local/etc &&\
+    chmod -R 777 /usr/local/include &&\
+    chmod -R 777 /usr/local/share &&\
     chown -R 755 /home/user
 
 RUN cp --backup=t /etc/skel/.bashrc ~user/.bashrc &&\
