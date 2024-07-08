@@ -19,20 +19,16 @@ RUN apt-get update && apt-get install -y \
 
 RUN adduser --disabled-password --gecos '' user && \
     #adduser user sudo && \
-    chmod -R 777 /home/user &&\
-    chmod -R 777 /usr/local/bin &&\ 
-    chmod -R 777 /usr/local/lib &&\
-    chmod -R 777 /usr/local/etc &&\
-    chmod -R 777 /usr/local/include &&\
-    chmod -R 777 /usr/local/share &&\
-    chown -R 755 /home/user
+    chmod -R 755 /home/user &&\
+    chmod -R 755 /usr/local/bin &&\ 
+    chmod -R 755 /usr/local/lib &&\
+    chmod -R 755 /usr/local/etc &&\
+    chmod -R 755 /usr/local/include &&\
+    chmod -R 755 /usr/local/share 
 
 RUN cp --backup=t /etc/skel/.bashrc ~user/.bashrc &&\
     cp --backup=t /etc/skel/.profile ~user/.profile &&\
     cp --backup=t /etc/skel/.bash_logout ~user/.bash_logout
-
-RUN mkdir -p /home/user/.local/bin &&\
-    chown -R user /home/user/.local
 
 USER user
 
@@ -43,5 +39,7 @@ RUN pip3 install --no-cache-dir --upgrade pip
 COPY requirements.txt /home/user/app/requirements.txt
 
 RUN pip3 install --no-cache-dir -r requirements.txt
+
+COPY jupyterlab.sh /home/user/jupyterlab.sh
 
 CMD ["/bin/bash"]
