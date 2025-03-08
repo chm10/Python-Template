@@ -1,12 +1,12 @@
-version: "3"
 services:
   app:  
     build: .
     volumes:
       - ./app:/home/user/app
+      - ./data:/home/user/data
     tty: True
-    container_name: python3.11-dev-container
-    #ports:
-    #  - "8888:8888"
-    network_mode: bridge
+    container_name: python3.12-dev-container
+    ports:
+      - "8888:8888"
+    #network_mode: bridge
     stop_signal: SIGKILL
