@@ -1,0 +1,19 @@
+services:
+  app-gpu:
+    container_name: python3.12-dev-container
+    build:
+      context: .
+      dockerfile: Dockerfile.gpu
+    volumes:
+      - ./app:/home/user/app
+      - ./data:/home/user/data
+    tty: True
+    ports:
+      - "8889:8888"
+    #network_mode: bridge
+    stop_signal: SIGKILL
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - capabilities: [gpu]
